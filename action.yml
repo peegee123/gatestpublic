@@ -1,0 +1,20 @@
+name: 'Prepare AWS Lambda Image '
+description: 'Install application needed by Github Actions to run properly inside AWS lambda images.'
+inputs:
+  packager:
+    description: 'Depending of the lambda version the packager is "dnf" or "apt"'
+    required: false
+    default: 'yum'
+runs:
+  using: 'composite'
+  steps:
+    - name: Get Tar
+      run: ${{ inputs.packager }} install -y tar
+      shell: bash
+    - name: Get Gzip
+      run: ${{ inputs.packager }} install -y gzip
+      shell: bash
+    - name: Get Zip
+      run: ${{ inputs.packager }} install -y zip
+      shell: bash
+    
