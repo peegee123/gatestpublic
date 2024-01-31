@@ -16,3 +16,11 @@ jobs:
       - run: ls -lart
       - run: sysctl -a
       - run: brew list
+      - run: system_profiler
+      - run: sysctl hw.physicalcpu hw.logicalcpu
+      - run: sysctl -n hw.ncpu
+      - run: |
+          hwmemsize=$(sysctl -n hw.memsize)
+          ramsize=$(expr $hwmemsize / $((1024**3)))
+          echo "System Memory: ${ramsize} GB"
+      - run: df -hl
