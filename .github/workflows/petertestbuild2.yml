@@ -11,15 +11,15 @@ jobs:
     # runs-on: macos-14-xlarge
 
     steps:
-      - run: sysctl -n machdep.cpu.brand_string
-      - run: sysctl -a machdep.cpu.brand_string
+      - run: sysctl -n machdep.cpu.brand_string || true
+      - run: sysctl -a machdep.cpu.brand_string || true
       - run: echo "date = `date`" > "thedate_`date +\"%H_%M_%S__%d_%m_%Y\"`.txt"
       - run: ls -lart
-      - run: sysctl -a
+      - run: sysctl -a || true
       - run: brew list
       - run: system_profiler
-      - run: sysctl hw.physicalcpu hw.logicalcpu
-      - run: sysctl -n hw.ncpu
+      - run: sysctl hw.physicalcpu hw.logicalcpu || true
+      - run: sysctl -n hw.ncpu || true
       - run: |
           hwmemsize=$(sysctl -n hw.memsize)
           ramsize=$(expr $hwmemsize / $((1024**3)))
