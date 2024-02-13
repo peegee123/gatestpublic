@@ -93,8 +93,18 @@ jobs:
         run: ls -lart my_folder || true
 
 
+      - name: Terraform Plan 1
+        run: terraform plan || true
+        working-directory: terraform/config
+
+        # This will fail
       - name: Apply Terraform 2
-        run: terraform apply
+        run: terraform apply || true
+        working-directory: terraform/config
+
+        # This may fail too
+      - name: Apply Terraform 3
+        run: terraform apply -input=false  || true
         working-directory: terraform/config
 
 
