@@ -126,6 +126,35 @@ jobs:
         run: terraform plan || true
         working-directory: terraform/config
 
+
+      - name: Terraform Plan 2
+        run: terraform plan -out=tfplan || true
+        working-directory: terraform/config
+
+      - name: tfplanstep1
+        run: |
+            ls -lart || true
+            ls -lart tfplan || true
+            ls -lart terraform/config/tfplan || true
+            ls -lart terraform/config/ || true
+
+
+      - name: Terraform Plan 2
+        run: terraform plan -out=tfplan &> tpf1.txt|| true
+        working-directory: terraform/config
+
+      - name: tfplanstep2
+        run: |
+            ls -lart || true
+            ls -lart tfplan || true
+            ls -lart terraform/config/tfplan || true
+            ls -lart terraform/config/ || true
+            ls -lart tpf1.txt || true
+            cat tpf1.txt || true
+            grep '2 to add, 0 to change, 0 to destroy' tpf1.txt || true
+
+
+
         # This will fail
       - name: Apply Terraform 2
         run: terraform apply || true
@@ -188,7 +217,8 @@ jobs:
 #         name:  'env1'
         name:  "${{needs.job1.outputs.my_variable2}}"
 #         url: https://example.com
-        url: any-old_string_here
+#         url: any-old_string_here
+        url: https://any-old_string_here
 
     steps:
 
