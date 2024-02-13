@@ -45,9 +45,92 @@ jobs:
         run: ls -lart terraform/config/.terraform || true
 
 
-  terraform_apply:
+  terraform_apply1:
     runs-on: ubuntu-latest
     needs: terraform_init
+    steps:
+
+      - name: tfstep1
+        run: ls -lart || true
+
+      - name: tfstep2
+        run: ls -lart .terraform || true
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: tfstep3
+        run: ls -lart || true
+
+      - name: tfstep4
+        run: ls -lart .terraform || true
+
+
+      - name: Apply Terraform 1
+        run: terraform apply -auto-approve || true
+        working-directory: terraform/config
+
+      - name: tfstep5
+        run: ls -lart || true
+
+      - name: tfstep6
+        run: ls -lart .terraform || true
+
+
+
+      - name: Initialize Terraform
+        run: terraform init
+        working-directory: terraform/config
+
+
+      - name: tfstep7
+        run: ls -lart || true
+
+      - name: tfstep8
+        run: ls -lart .terraform || true
+
+      - name: tfstep8a
+        run: ls -lart my_folder || true
+
+
+      - name: Apply Terraform 2
+        run: terraform apply
+        working-directory: terraform/config
+
+
+      - name: tfstep9
+        run: ls -lart || true
+
+      - name: tfstep9a
+        run: ls -lart terraform/config || true
+
+      - name: tfstep9b
+        run: ls -lart terraform/config/.terraform || true
+
+
+      - name: tfstep10
+        run: ls -lart .terraform || true
+
+
+      - name: tfstep10a
+        run: ls -lart my_folder || true
+
+      - name: tfstep10a
+        run: cat my_folder/my_file.txt || true
+
+
+      - name: tfstep11
+        run: ls -lart terraform/config/my_folder || true
+
+      - name: tfstep12
+        run: cat terraform/config/my_folder/my_file.txt || true
+
+
+
+  terraform_apply2:
+    runs-on: ubuntu-latest
+    needs: terraform_apply1
+    environment: 'env1'
     steps:
 
       - name: tfstep1
