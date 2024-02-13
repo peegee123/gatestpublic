@@ -1,1 +1,23 @@
 
+name: petertestbuild2.yml
+run-name: ${{ github.actor }} file petertestbuild2.yml
+# on: [push]
+on: workflow_dispatch
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "job1 step1"
+      - run: echo "job1 step2"
+  job2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: step1
+        run: echo "job2 step1"
+
+      - name: step2
+        run: echo "job2 step2"
+        
+      - name: step3
+        run: echo "job2 step3"
