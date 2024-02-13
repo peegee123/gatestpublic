@@ -19,7 +19,7 @@ jobs:
         run: |
             #  echo "::set-output name=my_variable1::123"
             echo "my_variable1=123" >> ${GITHUB_OUTPUT}
-#             echo "my_variable2=xenv1" >> ${GITHUB_OUTPUT}
+            # echo "my_variable2=xenv1" >> ${GITHUB_OUTPUT}
             echo "my_variable2=env1" >> ${GITHUB_OUTPUT}
 
   job2:
