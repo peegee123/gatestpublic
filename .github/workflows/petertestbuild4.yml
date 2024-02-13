@@ -1,0 +1,29 @@
+
+name: petertestbuild4.yml
+run-name: ${{ github.actor }} file petertestbuild4.yml
+
+on: workflow_dispatch
+
+jobs:
+  terraform_init:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Initialize Terraform
+        run: terraform init
+        working-directory: terraform/config
+
+  terraform_apply:
+    runs-on: ubuntu-latest
+    needs: terraform_init
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Apply Terraform
+        run: terraform apply -auto-approve
+        working-directory: terraform/config
+
+
