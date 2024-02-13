@@ -117,3 +117,12 @@ jobs:
 
       - name: tfstep10a
         run: cat my_folder/my_file.txt || true
+
+
+      - name: tfstep11
+        run: ls -lart terraform/config/my_folder || true
+
+      - name: tfstep12
+        run: cat terraform/config/my_folder/my_file.txt || true
+
+
