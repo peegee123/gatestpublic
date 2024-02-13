@@ -30,13 +30,19 @@ jobs:
 
       - name: Initialize Terraform
         run: terraform init
-#         working-directory: terraform/config
+        working-directory: terraform/config
 
       - name: tfstep5
         run: ls -lart || true
 
       - name: tfstep6
         run: ls -lart .terraform || true
+
+      - name: tfstep6a
+        run: ls -lart terraform/config || true
+
+      - name: tfstep6b
+        run: ls -lart terraform/config/.terraform || true
 
 
   terraform_apply:
@@ -62,7 +68,7 @@ jobs:
 
       - name: Apply Terraform 1
         run: terraform apply -auto-approve || true
-#         working-directory: terraform/config
+        working-directory: terraform/config
 
       - name: tfstep5
         run: ls -lart || true
@@ -74,7 +80,7 @@ jobs:
 
       - name: Initialize Terraform
         run: terraform init
-#         working-directory: terraform/config
+        working-directory: terraform/config
 
 
       - name: tfstep7
@@ -89,14 +95,22 @@ jobs:
 
       - name: Apply Terraform 2
         run: terraform apply -auto-approve
-#         working-directory: terraform/config
+        working-directory: terraform/config
 
 
       - name: tfstep9
         run: ls -lart || true
 
+      - name: tfstep9a
+        run: ls -lart terraform/config || true
+
+      - name: tfstep9b
+        run: ls -lart terraform/config/.terraform || true
+
+
       - name: tfstep10
         run: ls -lart .terraform || true
+
 
       - name: tfstep10a
         run: ls -lart my_folder || true
