@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Initialize Terraform
         run: terraform init
@@ -20,7 +20,7 @@ jobs:
     needs: terraform_init
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Apply Terraform
         run: terraform apply -auto-approve
