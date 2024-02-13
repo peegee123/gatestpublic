@@ -149,9 +149,9 @@ jobs:
             ls -lart tfplan || true
             ls -lart terraform/config/tfplan || true
             ls -lart terraform/config/ || true
-            ls -lart tpf1.txt || true
-            cat tpf1.txt || true
-            grep '2 to add, 0 to change, 0 to destroy' tpf1.txt || true
+            ls -lart terraform/config/tpf1.txt || true
+            cat terraform/config/tpf1.txt || true
+            grep '2 to add, 0 to change, 0 to destroy' terraform/config/tpf1.txt || true
 
 
 
