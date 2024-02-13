@@ -1,11 +1,12 @@
 name: petertestbuild2.yml
 run-name: ${{ github.actor }} file petertestbuild2.yml
-on: [push]
+# on: [push]
+on: workflow_dispatch
 
 jobs:
   build:
-    # runs-on: ubuntu-latest
-    runs-on: macos-14
+    runs-on: ubuntu-latest
+    # runs-on: macos-14
     # runs-on: macos-14-large
     # runs-on: macos-14-xlarge
 
@@ -24,3 +25,10 @@ jobs:
           ramsize=$(expr $hwmemsize / $((1024**3)))
           echo "System Memory: ${ramsize} GB"
       - run: df -hl
+
+  job2:
+    runs-on: ubuntu-latest
+    environment: 'env1'
+    steps:
+      - run: echo "step1"
+      - run: echo "step2"
