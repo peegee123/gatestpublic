@@ -27,6 +27,10 @@ jobs:
       - name: tfstep4
         run: ls -lart .terraform || true
 
+ 
+      - name: Get Terraform version
+        run: terraform --version || true
+
 
       - name: Initialize Terraform
         run: terraform init
@@ -107,6 +111,20 @@ jobs:
         run: terraform apply -input=false  || true
         working-directory: terraform/config
 
+      - name: Apply Terraform 3
+        run: terraform apply -input=false  || true
+        working-directory: terraform/config
+
+
+# terraform init -input=false to initialize the working directory.
+# terraform plan -out=tfplan -input=false to create a plan and save it to the local file tfplan.
+# terraform apply -input=false tfplan to apply the plan stored in the file tfplan.
+# 
+#     environment:
+#       name: ${{ if: needs.job1.result == 'failure' }}  # Conditional environment
+#       url: ${{ secrets.TEST_URL }} # Conditional environment URL
+
+# terraform plan -out=tfplan -input=false
 
       - name: tfstep9
         run: ls -lart || true
@@ -140,7 +158,10 @@ jobs:
   terraform_apply2:
     runs-on: ubuntu-latest
     needs: terraform_apply1
-    environment: 'env1'
+#     environment: 'env1'
+    environment:
+        name:  'env1'
+        url: https://example.com
     steps:
 
       - name: tfstep1
