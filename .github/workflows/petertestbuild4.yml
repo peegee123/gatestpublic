@@ -190,6 +190,22 @@ jobs:
 
     steps:
 
+      - name: tfstep00
+        run: |
+            echo "  needs.job1.outputs.my_variable1 = ${{needs.job1.outputs.my_variable1}}"
+            echo "  needs.job1.outputs.my_variable2 = ${{needs.job1.outputs.my_variable2}}"
+
+      - name: "tfstep01"
+        run: |
+            echo "  needs.job1.outputs.my_variable1 = ${{needs.job1.outputs.my_variable1}}"
+            echo "  needs.job1.outputs.my_variable2 = ${{needs.job1.outputs.my_variable2}}"
+
+      - name: "tfstep02_${{needs.job1.outputs.my_variable2}}"
+        run: |
+            echo "  needs.job1.outputs.my_variable1 = ${{needs.job1.outputs.my_variable1}}"
+            echo "  needs.job1.outputs.my_variable2 = ${{needs.job1.outputs.my_variable2}}"
+
+
       - name: tfstep1
         run: ls -lart || true
 
