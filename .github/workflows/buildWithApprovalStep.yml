@@ -100,6 +100,8 @@ jobs:
         working-directory: terraform/config
         # this is same as
         # terraform -chdir=terraform/config init
+        # this is same as
+        # cd terraform/config && terraform init && cd -
 
       - name: tfstep7
         run: ls -lart || true
@@ -119,9 +121,6 @@ jobs:
       - name: Terraform Plan 2
         run: terraform plan -out=tfplan || true
         working-directory: terraform/config
-        # this is same as
-        # terraform -chdir=terraform/config -out=tfplan plan
-
       - name: tfplanstep1
         run: |
           ls -lart || true
@@ -140,8 +139,8 @@ jobs:
         run: terraform plan -out=tfplan  -no-color &> tpf1.txt|| true
         working-directory: terraform/config
         # this is same as
-        # cd terraform/config && terraform plan -out=tfplan &> tpf1.txt
-        # terraform -chdir=terraform/config plan -out=tfplan &> terraform/config/tpf1.txt
+        # cd terraform/config && terraform plan -out=tfplan -no-color &> tpf1.txt && cd -
+        # terraform -chdir=terraform/config plan -out=tfplan -no-color &> terraform/config/tpf1.txt
 
       - name: tfplanstep2
         run: |
@@ -166,7 +165,7 @@ jobs:
       - name: Apply Terraform 3
         run: terraform apply -input=false  || true
         working-directory: terraform/config
-
+      # terraform -chdir=terraform/config apply
       # terraform init -input=false to initialize the working directory.
       # terraform plan -out=tfplan -input=false to create a plan and save it to the local file tfplan.
       # terraform apply -input=false tfplan to apply the plan stored in the file tfplan.
