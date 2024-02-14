@@ -32,6 +32,6 @@ resource "local_file" "my_file" {
   depends_on = [null_resource.folder_management]
 
   filename = "${null_resource.folder_management.triggers.folder_path}/my_file.txt"
-  content  = "Hello, Terraform!\nThis is line 2\nAnd this is line 3"
+  content  = "Hello, Terraform!\nThis is line 2\nAnd this is line 3\n"
 }
 
